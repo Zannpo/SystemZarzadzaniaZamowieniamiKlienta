@@ -225,6 +225,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
             this.label4.Size = new System.Drawing.Size(278, 37);
             this.label4.TabIndex = 6;
             this.label4.Text = "GODZINY OTWARCIA:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // panel1
             // 

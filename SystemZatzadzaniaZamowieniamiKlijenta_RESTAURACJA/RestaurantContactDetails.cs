@@ -20,5 +20,10 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
             Home openForm = new Home();
             openForm.ShowDialog();
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

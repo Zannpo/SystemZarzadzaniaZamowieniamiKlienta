@@ -276,7 +276,6 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                     !(string.IsNullOrWhiteSpace(userAddressCity.Text)))
                 {
                     ChoosingMethodPayment openForm = new ChoosingMethodPayment(clientList, customerAddressList, listOfTheDishesOk, orderItemListOk, orderList);
-                    //ChoosingMethodPayment openForm = new ChoosingMethodPayment();
                     openForm.ShowDialog();
                 }
                 else
@@ -286,7 +285,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, " \r\n" + ex.StackTrace);
+                MessageBox.Show(ex.Message, " \n" + ex.StackTrace);
             }
         }
 

@@ -26,11 +26,10 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
 
         static string connectionString = ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString;
         SqlConnection cnn = new SqlConnection(connectionString);
-
-        decimal totalPrice = 0, delivery = 0;
+              
         int specialOffer = 0;
         DateTime today = DateTime.Now.Date;
-        string paymentMethod;
+       
         public OrderStatusTrue(List<Klient> clientList, List<Adresy> customerAddressList, List<PozycjaZamowienia> orderItemList, List<Zamowienie> orderList, List<Danie> listOfTheDishes)
         {
             InitializeComponent();

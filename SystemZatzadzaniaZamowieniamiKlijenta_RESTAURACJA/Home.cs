@@ -33,8 +33,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                 totalPrice = decimal.Parse(textBox1.Text);
             }
             textBox2.Text = "7";
-
-            
+                        
             deleteOldClients();
         }
 
@@ -49,7 +48,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, " \r\n" + ex.StackTrace);               
+                MessageBox.Show(ex.Message, " \n" + ex.StackTrace);               
             }
             cnn.Close();
         }

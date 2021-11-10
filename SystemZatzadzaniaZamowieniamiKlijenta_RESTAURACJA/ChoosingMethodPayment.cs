@@ -23,7 +23,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
       
 
         static string connectionString = ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString;
-        SqlConnection cnn = new SqlConnection(connectionString);
+       
         public ChoosingMethodPayment(List<Klient> clientList, List<Adresy> customerAddressList, List<Danie> listOfTheDishes, List<PozycjaZamowienia> orderItemList, List<Zamowienie> orderList)
         {
             InitializeComponent();
