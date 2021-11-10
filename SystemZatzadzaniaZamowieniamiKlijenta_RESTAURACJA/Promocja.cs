@@ -6,50 +6,9 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
 {
     class Promocja
     {
-        int idPromocja;
-        string nazwaPromocji, opisPromocji;
-       
-
-
-        public int IdPromocja
-        {
-            get
-            {
-                return idPromocja;
-            }
-
-            set
-            {
-                idPromocja = value;
-            }
-        }
-
-
-        public string NazwaPromocji
-        {
-            get
-            {
-                return nazwaPromocji;
-            }
-
-            set
-            {
-                nazwaPromocji = value;
-            }
-        }
-
-        public string OpisPromocji
-        {
-            get
-            {
-                return opisPromocji;
-            }
-
-            set
-            {
-                opisPromocji = value;
-            }
-        }
+        public int idPromocja { get; set; }
+        public string nazwaPromocji { get; set; }
+        public string opisPromocji { get; set; }       
 
     }
 }

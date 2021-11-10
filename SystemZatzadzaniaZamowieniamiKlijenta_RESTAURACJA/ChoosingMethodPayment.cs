@@ -43,13 +43,13 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                     if (radioButton1.Checked)
                     {   //Blik
                         
-                        order.OpcjePlatnosci = "Blik";
+                        order.opcjePlatnosci = "Blik";
                         blikPayment openForm = new blikPayment(clientListOK,customerAddressListOK,orderItemListOK,orderListOK,listOfTheDishesOk);
                         openForm.ShowDialog();
                 }
                 else if (radioButton2.Checked)
                     {   //GOTÓWKA
-                        order.OpcjePlatnosci = "Gotówka";
+                        order.opcjePlatnosci = "Gotówka";
                         OrderStatusTrue openForm = new OrderStatusTrue(clientListOK, customerAddressListOK, orderItemListOK, orderListOK, listOfTheDishesOk);
                         openForm.ShowDialog();
 
@@ -58,7 +58,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                     else if (radioButton3.Checked)
                     {   //KARTA PLATNICZA
 
-                        order.OpcjePlatnosci = "Karta płatnicza";
+                        order.opcjePlatnosci = "Karta płatnicza";
                    
                         cashPayment openForm = new cashPayment(clientListOK, customerAddressListOK, orderItemListOK, orderListOK, listOfTheDishesOk);
                         openForm.ShowDialog();

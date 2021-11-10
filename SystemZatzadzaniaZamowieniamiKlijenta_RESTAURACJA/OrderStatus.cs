@@ -107,17 +107,16 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                 cmd.Parameters["@idKlient"].Value = output1;
 
                 cmd.Parameters.Add("@imie", SqlDbType.NChar);
-                cmd.Parameters["@imie"].Value = client.Imie;
+                cmd.Parameters["@imie"].Value = client.imie;
 
                 cmd.Parameters.Add("@nazwisko", SqlDbType.NChar);
-                cmd.Parameters["@nazwisko"].Value = client.Nazwisko;
+                cmd.Parameters["@nazwisko"].Value = client.nazwisko;
 
                 cmd.Parameters.Add("@email", SqlDbType.NChar);
-                cmd.Parameters["@email"].Value = client.Email;
+                cmd.Parameters["@email"].Value = client.email;
 
                 cmd.Parameters.Add("@nrtelefonu", SqlDbType.NChar);
-                cmd.Parameters["@nrtelefonu"].Value = client.Nrtelefonu;
-
+                cmd.Parameters["@nrtelefonu"].Value = client.nrTelefonu;
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
                 cnn.Close();
@@ -150,19 +149,19 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                     cmd3.Parameters["@idKlient"].Value = output1;
 
                     cmd3.Parameters.Add("@ulica", SqlDbType.VarChar);
-                    cmd3.Parameters["@ulica"].Value = adresy.Ulica;
+                    cmd3.Parameters["@ulica"].Value = adresy.ulica;
 
                     cmd3.Parameters.Add("@numerDomu", SqlDbType.VarChar);
-                    cmd3.Parameters["@numerDomu"].Value = adresy.NumerDomu;
+                    cmd3.Parameters["@numerDomu"].Value = adresy.numerDomu;
 
                     cmd3.Parameters.Add("@numerMieszkania", SqlDbType.VarChar);
-                    cmd3.Parameters["@numerMieszkania"].Value = adresy.NumerMieszkania;
+                    cmd3.Parameters["@numerMieszkania"].Value = adresy.numerMieszkania;
 
                     cmd3.Parameters.Add("@kodPocztowy", SqlDbType.VarChar);
-                    cmd3.Parameters["@kodPocztowy"].Value = adresy.KodPocztowy;
+                    cmd3.Parameters["@kodPocztowy"].Value = adresy.kodPocztowy;
 
                     cmd3.Parameters.Add("@miasto", SqlDbType.VarChar);
-                    cmd3.Parameters["@miasto"].Value = adresy.Miasto;
+                    cmd3.Parameters["@miasto"].Value = adresy.miasto;
                     cmd3.ExecuteNonQuery();
                     cmd3.Dispose();
                     cnn.Close();
@@ -194,7 +193,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                         cmd5.Cancel();
                         dataReader3.Close();
 
-                        if (order.KosztDostawy == 0)
+                        if (order.kosztDostawy == 0)
                         {
                             specialOffer = 1;
                         }
@@ -214,22 +213,22 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                         cmd6.Parameters["@statusZamowienia"].Value = "dostarczone";
 
                         cmd6.Parameters.Add("@opcjePlatnosci", SqlDbType.VarChar);
-                        cmd6.Parameters["@opcjePlatnosci"].Value = order.OpcjePlatnosci;
+                        cmd6.Parameters["@opcjePlatnosci"].Value = order.opcjePlatnosci;
 
                         cmd6.Parameters.Add("@idPromocja", SqlDbType.Int);
                         cmd6.Parameters["@idPromocja"].Value = specialOffer;
 
                         cmd6.Parameters.Add("@czasDostawy", SqlDbType.DateTime);
-                        cmd6.Parameters["@czasDostawy"].Value = clientDetails.CzasDostawy;
+                        cmd6.Parameters["@czasDostawy"].Value = clientDetails.czasDostawy;
 
                         cmd6.Parameters.Add("@kosztCalkowity", SqlDbType.Money);
-                        cmd6.Parameters["@kosztCalkowity"].Value = order.KosztCalkowity;
+                        cmd6.Parameters["@kosztCalkowity"].Value = order.kosztCalkowity;
 
                         cmd6.Parameters.Add("@kosztDostawy", SqlDbType.Money);
-                        cmd6.Parameters["@kosztDostawy"].Value = order.KosztDostawy;
+                        cmd6.Parameters["@kosztDostawy"].Value = order.kosztDostawy;
 
                         cmd6.Parameters.Add("@uwagi", SqlDbType.VarChar);
-                        cmd6.Parameters["@uwagi"].Value = clientDetails.Komentarz;
+                        cmd6.Parameters["@uwagi"].Value = clientDetails.komentarz;
                         cmd6.ExecuteNonQuery();
                         cmd6.Dispose();
 
@@ -278,8 +277,8 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                 cmd9.Cancel();
                 dataReader5.Close();
 
-                orderItem.IdKlient = output6;
-                orderItem.IdZamowienie = output6;
+                orderItem.idKlient = output6;
+                orderItem.idZamowienie = output6;
 
                 SqlCommand cmd8 = new SqlCommand(sqlPozycjaZamowienia, cnn);
 
@@ -287,16 +286,16 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                 cmd8.Parameters["@idPozycjaZamowienia"].Value = output5;
 
                 cmd8.Parameters.Add("@idZamowienie", SqlDbType.Int);
-                cmd8.Parameters["@idZamowienie"].Value = orderItem.IdKlient;
+                cmd8.Parameters["@idZamowienie"].Value = orderItem.idKlient;
 
                 cmd8.Parameters.Add("@idDania", SqlDbType.Int);
-                cmd8.Parameters["@idDania"].Value = orderItem.IdDania;
+                cmd8.Parameters["@idDania"].Value = orderItem.idDania;
 
                 cmd8.Parameters.Add("@idKlient", SqlDbType.Int);
-                cmd8.Parameters["@idKlient"].Value = orderItem.IdZamowienie;
+                cmd8.Parameters["@idKlient"].Value = orderItem.idZamowienie;
 
                 cmd8.Parameters.Add("@iloscKonkretnegoDania", SqlDbType.Int);
-                cmd8.Parameters["@iloscKonkretnegoDania"].Value = orderItem.IloscKonkretnegoDania;
+                cmd8.Parameters["@iloscKonkretnegoDania"].Value = orderItem.iloscKonkretnegoDania;
 
                 cmd8.ExecuteNonQuery();
                 cmd8.Dispose();
@@ -311,23 +310,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
         }
 
         public void viewDeliveryStatus()
-        {   // wyświetlanie STATUSU DOSTAWY: zależne od timera
-
-            //string connectionString = ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString;
-            //SqlConnection cnn = new SqlConnection(connectionString);
-            //cnn.Open();
-            ////wyświetlenie całej listy MENU
-            //SqlDataAdapter sql = new SqlDataAdapter("SELECT idDanie,nazwaDania, cenaDania, skladniki FROM Danie ", cnn);
-            //DataTable dishes = new DataTable();
-            //sql.Fill(dishes);
-            ////dataGridView1.DataSource = dishes;
-
-            ////if (dataGridView1.Rows.Count == 1 && dataGridView1.Rows != null)
-            ////{
-            ////    MessageBox.Show("Aktualnie nie posiadamy żadnych dań w ofercie!");
-            ////}
-            ////dataGridView1.ClearSelection();
-            //cnn.Close();
+        {   // wyświetlanie STATUSU DOSTAWY: zależne od timera            
 
             if (timeLeft >= 0 && timeLeft < 1000)
             {

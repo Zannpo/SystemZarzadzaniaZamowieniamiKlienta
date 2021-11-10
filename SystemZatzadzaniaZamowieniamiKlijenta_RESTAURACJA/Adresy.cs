@@ -6,45 +6,14 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
 {
     public class Adresy
     {
-        int idAdres, idKlient;
-        string ulica, numerDomu, numerMieszkania, kodPocztowy, miasto;
+        public int idAdres { get; set; }
+        public int idKlient { get; set; }
+        public string ulica { get; set; }
+        public string numerDomu { get; set; }
+        public string numerMieszkania { get; set; }
+        public string kodPocztowy { get; set; }
+        public string miasto { get; set; }
 
-
-        public int IdAdres
-        {
-            get { return idAdres; } 
-            set { idAdres = value; }
-        }
-        public int IdKlient
-        {
-            get { return idKlient; } 
-            set { idKlient = value; }
-        }
-
-        public string Ulica
-        {
-            get { return ulica; }
-            set { ulica = value; }
-        }
-        public string NumerDomu
-        {
-            get { return numerDomu; }
-            set { numerDomu = value; }
-        }
-        public string NumerMieszkania
-        {
-            get { return numerMieszkania; }
-            set { numerMieszkania = value; }
-        }
-        public string KodPocztowy
-        {
-            get { return kodPocztowy; }
-            set { kodPocztowy = value; }
-        }
-        public string Miasto
-        {
-            get { return miasto; }
-            set { miasto = value; }
-        }
+       
     }
 }

@@ -33,23 +33,23 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
             orderItemListOk = orderItemList;
             listOfTheDishesOk = listOfTheDishes;
 
-            foreach (Danie d in listOfTheDishes)
+            foreach (Danie danie in listOfTheDishes)
             {
-                dataGridView1.Rows.Add(d.NazwaDania, d.CenaDania);
+                dataGridView1.Rows.Add(danie.nazwaDania, danie.cenaDania);
               
-                foreach (PozycjaZamowienia o in orderItemList)
+                foreach (PozycjaZamowienia zamowienie in orderItemList)
                 {
-                    if (o.IdDania == d.IdDanie)
+                    if (zamowienie.idDania == danie.idDanie)
                     {
 
                         idRow++;
                         try
                         {                            
-                            dataGridView1.Rows[idRow-1].Cells[2].Value = o.IloscKonkretnegoDania;
+                            dataGridView1.Rows[idRow-1].Cells[2].Value = zamowienie.iloscKonkretnegoDania;
                         }
                         catch(Exception ex)
                         {
-                            MessageBox.Show(ex.Message);
+                            MessageBox.Show(ex.Message, " \r\n" + ex.StackTrace);
                         }
                         
                     }
@@ -183,13 +183,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                     MessageBox.Show("Czy na pewno wprowadziłeś poprawny numer telefonu?");
                     return;
                 }
-
-
-                //wybrany czas dostawy przez użytkownika
-                //string deliveryTime = "";
-
-                //TimeSpan timeSpan = TimeSpan.FromSeconds(90);
-                //deliveryTime = string.Format(new DateTime(timeSpan.Ticks).ToString("HH:mm:ss"));
+                                
 
                 DateTime deliveryTime = DateTime.Now; 
                 deliveryTime = deliveryTime.AddMinutes(90);
@@ -224,31 +218,31 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
 
                 int id = 0;
 
-                customer.Imie = userName.Text;
-                customer.Nazwisko = userFamilyName.Text;
-                customer.Email = userEmail.Text;
-                customer.Nrtelefonu = (int)numericuserPhoneNumber.Value;
-                customer.Komentarz = userComments.Text;
-                customer.CzasDostawy = deliveryTime;
+                customer.imie = userName.Text;
+                customer.nazwisko = userFamilyName.Text;
+                customer.email = userEmail.Text;
+                customer.nrTelefonu = (int)numericuserPhoneNumber.Value;
+                customer.komentarz = userComments.Text;
+                customer.czasDostawy = deliveryTime;
                 
                 totalPrice = Convert.ToDecimal(textBox1.Text);
                 delivery = Convert.ToDecimal(textBox2.Text);
                 sumPrice = Convert.ToDecimal(textBox3.Text);
                 
                 Zamowienie order = new Zamowienie();
-                order.KosztCalkowity = totalPrice;
-                order.KosztDostawy = delivery;
+                order.kosztCalkowity = totalPrice;
+                order.kosztDostawy = delivery;
 
-                order.IdZamowienie = id;
-                customer.IdKlient = id;
-                addressCustomer.IdKlient = id;
+                order.idZamowienie = id;
+                customer.idKlient = id;
+                addressCustomer.idKlient = id;
 
                 try
                 {
-                    addressCustomer.Ulica = userAddressStreet.Text;
-                    addressCustomer.NumerDomu = userAddressStreetNumber.Text;
-                    addressCustomer.NumerMieszkania = userAddressApartmentNumber.Text;
-                    addressCustomer.KodPocztowy = userAddressPostalCode.Text;
+                    addressCustomer.ulica = userAddressStreet.Text;
+                    addressCustomer.numerDomu = userAddressStreetNumber.Text;
+                    addressCustomer.numerMieszkania = userAddressApartmentNumber.Text;
+                    addressCustomer.kodPocztowy = userAddressPostalCode.Text;
                     
                     //Walidacja miasto
                     if (userAddressCity.SelectedItem == null)
@@ -258,7 +252,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                     }
                     else
                     {
-                        addressCustomer.Miasto = userAddressCity.SelectedItem.ToString();
+                        addressCustomer.miasto = userAddressCity.SelectedItem.ToString();
                     }
 
                 }
@@ -292,7 +286,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, " \r\n" + ex.StackTrace);
             }
         }
 

@@ -5,74 +5,11 @@ using System.Text;
 namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
 {
     public class Danie
-    {
-        int idDanie, idTypDania;
-        string nazwaDania, skladniki;
-        decimal cenaDania;
-
-        public int IdDanie
-        {
-            get
-            {
-                return idDanie;
-            }
-
-            set
-            {
-                idDanie = value;
-            }
-        }
-
-        public int IdTypDania
-        {
-            get
-            {
-                return idTypDania;
-            }
-
-            set
-            {
-                idTypDania = value;
-            }
-        }
-
-        public string NazwaDania
-        {
-            get
-            {
-                return nazwaDania;
-            }
-
-            set
-            {
-                nazwaDania = value;
-            }
-        }
-
-        public string Skladniki
-        {
-            get
-            {
-                return skladniki;
-            }
-
-            set
-            {
-                skladniki = value;
-            }
-        }
-
-        public decimal CenaDania
-        {
-            get
-            {
-                return cenaDania;
-            }
-
-            set
-            {
-                cenaDania = value;
-            }
-        }
+    {   public int idDanie { get; set; }
+        public int idTypDania { get; set; }
+        public string nazwaDania { get; set; }
+        public string skladniki { get; set; }
+        public decimal cenaDania { get; set; }
+        
     }
 }

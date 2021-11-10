@@ -49,7 +49,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, " \r\n" + ex.StackTrace);               
             }
             cnn.Close();
         }
@@ -65,10 +65,8 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
         }
 
         void refresh()
-        {
-           
-            cnn.Open();
-
+        {           
+            //cnn.Open();
             dataGridView1.Rows.Clear();
             //Wyświetlenie całej listy menu po uruchomieniu formatki 
             SqlDataAdapter sql = new SqlDataAdapter("SELECT idDanie, nazwaDania, cenaDania, skladniki FROM Danie ", cnn);
@@ -80,13 +78,12 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                 MessageBox.Show("Aktualnie nie posiadamy żadnych dań w ofercie!");
             }
             dataGridView1.ClearSelection();
-            cnn.Close();
+            //cnn.Close();
         }
 
         void refreshSale(decimal totalPrice)
         {//Pobranie aktualnego dnia
             var today = DateTime.Now.Date;
-
             
             cnn.Open();
             if (totalPrice > 200)
@@ -117,6 +114,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                 dataGridView1.Columns[2].Width = 70;
                 dataGridView1.Columns[3].Width = 270;
             }
+
             if (dataGridView3.Rows.Count > 1)
             {
                 dataGridView3.Columns[0].Width = 140;
@@ -177,7 +175,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                     }
                     catch(Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(ex.Message, " \r\n" + ex.StackTrace);
                     }
                 }
                 else
@@ -240,17 +238,17 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                     priceOfTheDish = (decimal)dataGridView1.SelectedCells[2].Value;
                     amount = (int)numericUpDown1.Value;
 
-                    dish.NazwaDania = chosenDish.ToString();
-                    dish.CenaDania = priceOfTheDish;
-                    dish.IdDanie = id;
-                    orderItem.IdDania = id;
-                    orderItem.IloscKonkretnegoDania = amount;
+                    dish.nazwaDania = chosenDish.ToString();
+                    dish.cenaDania = priceOfTheDish;
+                    dish.idDanie = id;
+                    orderItem.idDania = id;
+                    orderItem.iloscKonkretnegoDania = amount;
 
                     listOfTheDishes.Add(dish);
                     orderItemList.Add(orderItem);
 
                     //Dodanie pozycji do koszyka
-                    dataGridView2.Rows.Add(dish.NazwaDania, dish.CenaDania, amount);
+                    dataGridView2.Rows.Add(dish.nazwaDania, dish.cenaDania, amount);
 
                     //Pobranie ceny z textbox
                     if (!string.IsNullOrEmpty(textBox1.Text))
@@ -259,7 +257,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                     }
 
                     //Zliczanie jednostkowej ceny całkowitej
-                    priceAfterAdding = dish.CenaDania * orderItem.IloscKonkretnegoDania;
+                    priceAfterAdding = dish.cenaDania * orderItem.iloscKonkretnegoDania;
                     totalPrice = priceFromTextBox + priceAfterAdding;
                     textBox1.Text = totalPrice.ToString();
                     refreshSale(totalPrice);
@@ -278,7 +276,7 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                 }
 
                 //Zliczanie jednostkowej ceny całkowitej
-                priceAfterAdding = dish.CenaDania * orderItem.IloscKonkretnegoDania;
+                priceAfterAdding = dish.cenaDania * orderItem.iloscKonkretnegoDania;
                 totalPrice = priceFromTextBox + priceAfterAdding;
                 textBox1.Text = totalPrice.ToString();
                 refreshSale(totalPrice);
@@ -329,9 +327,9 @@ namespace SystemZatzadzaniaZamowieniamiKlijenta_RESTAURACJA
                             //Usunięcie wybranego dania z listy
                             for (int i = 0; i < listOfTheDishes.Count; i++)
                             {
-                                index = listOfTheDishes.FindIndex(a => a.NazwaDania == chosenDish);
-                                newTotalPrice = listOfTheDishes[index].CenaDania;
-                                amount = orderItemList[index].IloscKonkretnegoDania;
+                                index = listOfTheDishes.FindIndex(danie => danie.nazwaDania == chosenDish);
+                                newTotalPrice = listOfTheDishes[index].cenaDania;
+                                amount = orderItemList[index].iloscKonkretnegoDania;
                                 listOfTheDishes.RemoveAt(index);
                                 orderItemList.RemoveAt(index);
 
